@@ -1,22 +1,15 @@
-version: '3.8'
-
 services:
-  # ----------------------------
-  # [TODO] 候选人请在此处补充配置
-  # ----------------------------
+  frontend:
+    build: ./frontend
+    container_name: sales-dashboard-frontend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
 
-  # 示例结构 (请取消注释并修改):
-
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "3000:3000"
-
-  # backend:
-  #   build: ./backend
-  #   ports:
-  #     - "8000:8000"
-
-  # db:
-  #   image: postgres:15 (or mysql/redis)
-  #   ...
+networks:
+  app-network:
+    driver: bridge
